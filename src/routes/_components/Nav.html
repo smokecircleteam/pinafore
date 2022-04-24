@@ -1,45 +1,40 @@
 <nav id="main-nav" class="main-nav">
-	<ul class="main-nav-ul">
-    <li class="main-nav-logo">
-      SmokeCircle
+  <ul class="main-nav-ul">
+    <li class="main-nav-logo tk-gioviale">
+      S<span>moke</span>C<span>ircle</span>
     </li>
     {#each $navPages as navPage (navPage.href)}
-      <li class="main-nav-li">
-        <NavItem
-          {page}
-          name={navPage.name}
-          href={navPage.href}
-          svg={navPage.svg}
-          label={navPage.label}
-        />
-      </li>
+    <li class="main-nav-li">
+      <NavItem {page} name={navPage.name} href={navPage.href} svg={navPage.svg} label={navPage.label} />
+    </li>
     {/each}
-	</ul>
+  </ul>
 </nav>
 {#if navShortcuts}
-  <svelte:component this={navShortcuts}/>
+<svelte:component this={navShortcuts} />
 {/if}
 
 <style>
-	.main-nav {
+  .main-nav {
     box-sizing: border-box;
-		border-bottom: var(--nav-border-bottom) solid var(--nav-border);
-		background: var(--nav-bg);
-		position: fixed;
-		left: 0;
-		right: 0;
-		top: 0;
-		z-index: 100;
-    contain: content; /* see https://www.w3.org/TR/2018/CR-css-contain-1-20181108/#valdef-contain-content */
-	}
+    border-bottom: var(--nav-border-bottom) solid var(--nav-border);
+    background: var(--nav-bg);
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: 100;
+    contain: content;
+    /* see https://www.w3.org/TR/2018/CR-css-contain-1-20181108/#valdef-contain-content */
+  }
 
   .main-nav-ul {
-		margin: 0;
-		padding: 0;
-		list-style: none;
-		display: flex;
-		align-items: stretch;
-	}
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    align-items: stretch;
+  }
 
   .main-nav-li {
     display: flex;
@@ -50,7 +45,6 @@
       flex: 1;
     }
   }
-
 </style>
 <script>
   import NavItem from './NavItem.html'
@@ -58,7 +52,7 @@
   import { store } from '../_store/store.js'
 
   export default {
-    async oncreate () {
+    async oncreate() {
       const navShortcuts = await importNavShortcuts()
       this.set({ navShortcuts })
     },
